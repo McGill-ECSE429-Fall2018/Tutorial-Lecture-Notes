@@ -5,8 +5,7 @@ rvm:
 bundler_args: "--system"
 env:
   global:
-  - GH_REF: github.com/ECSE321-Fall2018/EventRegistration-Tutorials
-  - secure: hdNKG/FlWKAr4dioeIKLCzc4vo9d+0gYEczNDuY1iMJX/6HtvWiCFIhkhDlPkhdHN9+oIV86eKFPgxLwivCqrscMaxvjtmMnM0E+sUzfZV9GnCCWnzUbZs5J341LQ22DVgZMt4p9JneTox5NMkjvOEwj5pV8yHafZLMTX770gezjnh1Fu4bF28KQLJyNH8Et/wp++sqEpIhkNFme+SvYIK263lCXm0FT8r3XL13FmE2Y0ZNldrykbw8tBil+Lrg0FjciiYx6jL9SvH3DgihRAac2MfP/CRds/qvefaqDLiXBe9SWsMBfWo/7SS8cXD6VxrI3sgnIj+voyIaZsGNDZXnAvUNcu+PzqjO4JvnHCeYB4K6GmTEbkgKBWdGgUvsNk9D0cADkdB4pXyz0/FH6JygCsXMfHs7Yy/55qM54Sk4GH0zWcTP1IPh+K+qXf0C0EyKjq+Tvlp9XNWH+FXZXV59zBJ3ZLN/p5JG0eLiwFLvCAzAi9OaxzETXUUzQg0naA0Z858gJCpQnzoqYSZpSh77ciMKDY31vUL7kEDcpzUMaDXxztZfgHhEJ7NFcphqyAVeT0bBeHCpZM5QpAtc6/sFYeluZoBUOi2UTqEPr0/Tt1rwZtA5KMgbqsf0N0NZaBkSURBKuZW0Tp57XdSjmVkOukYRyZskgxk8N5+A4iRk=
+  - GH_REF: github.com/McGill-ECSE429-Fall2018/Tutorial-Lecture-Notes 
 branches:
   only:
   - master
