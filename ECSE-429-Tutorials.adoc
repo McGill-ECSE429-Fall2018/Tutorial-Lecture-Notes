@@ -1,0 +1,28 @@
+ifdef::env-github,env-browser[:outfilesuffix: .adoc]
+:rootdir: .
+ifndef::source-highlighter[:source-highlighter: highlightjs]
+ifndef::highlightjsdir[:highlightjsdir: {rootdir}/highlight.js]
+ifndef::highlightjs-theme[:highlightjs-theme: foundation]
+:imagesdir: {rootdir}
+:toclevels: 3
+:toc:
+:toc2:
+:chapterdir: .
+:numbered:
+
+= ECSE 429 Software Validation: Hands-on Tutorials
+McGill University
+
+* link:https://mcgill-ecse429-fall2018.github.io/Tutorial-Lecture-Notes/[HTML version]
+* link:https://mcgill-ecse429-fall2018.github.io/Tutorial-Lecture-Notes/ECSE-429-Tutorials.pdf[PDF version]
+
+Sections of the tutorial will continuously be published at this web page.
+
+== Git recap
+
+<<<
+include::{chapterdir}/D01-Git-Basics.adoc[]
+
+<<<
+include::{chapterdir}/D02-Travis.adoc[]
+

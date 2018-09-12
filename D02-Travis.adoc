@@ -1,0 +1,111 @@
+=== Travis CI
+
+. Go to https://travis-ci.com/, click on Sign up with GitHub.
+
+. Click on the green authorize button at the bottom of the page.
+
+. Activate Travis-CI on your GitHub account +
+image:figs/travis-activate.png[Activate Travis-CI]
+
+. Select the repositories you want to build with Travis (make sure to include your repository that you created for this tutorial). You can modify this setting anytime later as well.
+
+. In your working copy of your repository, create a small Maven project with Spring Boot. 
+* Make sure you have Maven 3 installed (`mvn --version`).
+* Create the `src/main/java/Main.java` file with the content 
++
+[source,java]
+----
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Configuration
+@EnableAutoConfiguration
+@RestController
+public class Main {
+  public static void main(String[] args) {
+    SpringApplication.run(Main.class, args);
+  }
+	
+  @RequestMapping("/")
+  public String greeting(){
+    return "Hello world!";
+  }	
+}
+----
+* Create a `pom.xml` in the root of the working copy. 
++
+[source]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ca.mcgill.ecse429</groupId>
+  <artifactId>tutorial1</artifactId>
+  <version>1.0</version>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.4.RELEASE</version>
+    <relativePath/>
+  </parent>
+ 
+  <name>tutorial1</name>
+
+  <properties>
+    <java.version>1.8</java.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build-info</goal>
+            </goals>
+            <configuration>
+              <additionalProperties>
+                <java.source>${maven.compiler.source}</java.source>
+                <java.target>${maven.compiler.target}</java.target>
+              </additionalProperties>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+----
+* Add a `.gitignore` to ignore generated resources by Git: 
++
+[source]
+----
+*.class
+target/
+----
+* Make sure your application is compiling by running `mvn clean install`
+
+. Create a file called `.travis.yml`:
++
+[source]
+----
+language: java
+script:
+- mvn clean install
+----
+. Commit and push your work. If everything is set up correctly, the build should trigger and Travis should run your build using Maven.
+
