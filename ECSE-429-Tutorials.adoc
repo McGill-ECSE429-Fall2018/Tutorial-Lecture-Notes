@@ -18,7 +18,7 @@ McGill University
 
 Sections of the tutorial will continuously be published at this web page.
 
-== Git recap
+== Git Recap
 
 <<<
 include::{chapterdir}/D01-Git-Basics.adoc[]
@@ -26,3 +26,7 @@ include::{chapterdir}/D01-Git-Basics.adoc[]
 <<<
 include::{chapterdir}/D02-Travis.adoc[]
 
+== Code Reviews
+
+<<<
+include::{chapterdir}/D03-Code-Reviews.adoc[]
