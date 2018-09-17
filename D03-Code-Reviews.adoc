@@ -45,6 +45,9 @@ image:figs/gerrit-projects.png[Gerrit projects menu]
 image:figs/gerrit-project-settings.png[Gerrit project settings]
 
 . Copy the command from the `git clone` command shown above the _Description_ text box after changing to _Clone with commit-msg hook_ and _http_. +
+[NOTE]
+Make sure you are issuing the `git clone` command in a folder that _is not part of any git repository working copy_ in your file system. (In other words, you should do it in your `~/git` folder or the like.)
++
 image:figs/gerrit-clone.png[Gerrit clone]
 [NOTE]
 Optionally, if you have SSH key installed to GitHub, you can import it to GerritHub and use that for authentication.
