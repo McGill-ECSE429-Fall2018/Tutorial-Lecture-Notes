@@ -73,7 +73,7 @@ script:
 
 . Create a new change to the code, remove the recently added `install: true` line from `.travis.yml` and create a new commit. Do not push it yet!
 
-. Issue `git push origin HEAD:refs/for/master`. The outpus should show that a new Gerrit change is created.
+. Issue `git push origin HEAD:refs/for/master`. The outputs should show that a new Gerrit change is created.
 +
 [sourcei,none]
 ----
@@ -127,7 +127,7 @@ script:
 ----
 > git add .
 > git commit --amend
-> git push origin HEAD:/refs/for/master
+> git push origin HEAD:refs/for/master
 ----
 +
 [CAUTION]
