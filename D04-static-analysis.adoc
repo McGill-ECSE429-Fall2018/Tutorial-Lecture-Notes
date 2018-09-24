@@ -352,7 +352,7 @@ language: java
 jdk: oraclejdk7
 
 script:
- - #TODO: get infer archive and extract i
+ - #TODO: get infer archive and extract it
  - #TODO: add infer executable to the path
  - #TODO: invoke infer with your project
 ----
