@@ -31,7 +31,7 @@ include::{chapterdir}/D02-Travis.adoc[]
 <<<
 include::{chapterdir}/D03-Code-Reviews.adoc[]
 
-== Static Snalysis
+== Static Analysis
 
 <<<
 include::{chapterdir}/D04-static-analysis.adoc[]
