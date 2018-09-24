@@ -243,6 +243,7 @@ image:figs/sonarQube-ci-4.png[My Organization]
 4 Jot down the key given by SonarCloud.io under the _Create_ button.
 
 5 Edit the `.travis.yml` file
++
 [source,none]
 ----
 language: java
@@ -269,6 +270,7 @@ cache:
 ----
 
 For this example, the `addons` section would look like
++
 [source,none]
 ----
 addons:
@@ -279,7 +281,7 @@ addons:
 ----
 
 6 Push your work from the `master` branch to GitHub with the command `git add . && git commit -m "SonarCloud Integration" & git push` 
-
++
 [NOTE]
 We need to first analyze the `main` branch before we can analyze new branches along with their differences with the `master` branch 
 Your output should look something like this:
@@ -291,7 +293,7 @@ image:figs/sonarQube-ci-6.png[Analyzed Project]
 8 From the `master` branch, create and checkout a new branch `git branch sonarqube-travis-integration && git checkout sonarqube-travis-integration`
 
 9 Modify `App.java`'s class definition:
-
++
 [source,java]
 ----
 public class App 
