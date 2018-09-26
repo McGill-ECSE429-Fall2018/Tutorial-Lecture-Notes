@@ -370,7 +370,7 @@ public class AppTest
 }
 ----
 
-14 Push your work on the branch and check the output in SonarCloud.io (`git add . && git commit -m "SonarCloud Integration" & git push -u origin sonarqube-travis-integration`
+14 Push your work on the branch and check the output in SonarCloud.io (`git add . && git commit -m "SonarCloud Integration" & git push -u origin sonarqube-travis-integration` +
 image:figs/sonarQube-ci-7.png[New Branch]
 
 === Infer Static Analyzer
@@ -405,9 +405,5 @@ public static void main( String[] args ) {
 
 . Commit and push the 2 modified files (`commit add . && git commit -m "Added Infer Static Analyzer" && git push -u origin infer`)
 
-. Go to https://travis-ci.com/ to see your build processes.
-
-
-
-
-
+. Go to https://travis-ci.com/ to see your build processes. It should look something similar to this: +
+image:figs/infer-1.png[Infer Basic Output]
