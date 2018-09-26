@@ -4,7 +4,7 @@ This tutorial assumes that you have `maven` version 3.x.x installed on your comp
 
 Next we will update the JUnit dependencies. Locate your `pom.xml` file that was created after the above command. The default generated `pom.xml` should look something like:
 
-[Source, java]
+[source]
 ----
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -83,7 +83,7 @@ The default account created for your page is admin:admin +
 image:figs/sonarQube5.png[SonarQube Default Logged In Page]
 
 . Create Basic Code Smells in the Project +
-Locate the file `App.java` in your maven project and change the class definition to the following +
+Locate the file `App.java` in your maven project and change the class definition to the following: +
 
 [source, java]
 ----
@@ -102,40 +102,8 @@ public class App
 }
 ----
 
-. Create an Empty Test Suite in `AppTest.java` +
-
-[Source, java]
-----
-package com.mcgill.ca.tutorial3;
-
-import org.junit.Test;
-
-public class AppTest 
-{
-    @Test
-    public void emptyTest() {
-    
-    }
-}
-----
-
-10 Edit the `pom.xml`
-
-* Add JUnit dependency 
-[source, none]
-----
-...
-<dependencies>
-	...
-	<dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<version>4.12</version>
-	</dependency>
-</dependencies>
-...
-----  
-* Add the Sonar Maven plugin and its configuration to the project (e.g., after the `</dependencies>` closing tag) +
+8 Edit the `pom.xml` +
+Add the Sonar Maven plugin and its configuration to the project (e.g., after the `</dependencies>` closing tag) +
 
 [source,none]
 ----
@@ -167,19 +135,14 @@ public class AppTest
 ...
 ----
 
-11 Build the Project
+9 Build the Project +
+In another terminal, run the command `mvn clean install sonar:sonar` at the root of the project folder +
+You should get an output similar to this: +
+image:figs/sonarQube6.png[SonarQube Terminal Output] +
+If we visit the link in the terminal output (it follows the format of http://localhost:9000/dashboard?id=<INSERT_PROJECT_NAME>), we are brought to a page similar to this: +
+image:figs/sonarQube7.png[SonarQube Web Output] +
 
-In another terminal, run the command `mvn clean install sonar:sonar` at the root of the project folder
-
-You should get an output similar to this:
-
-image:figs/sonarQube6.png[SonarQube Terminal Output]
-
-If we visit the link in the terminal output (it follows the format of http://localhost:9000/dashboard?id=<INSERT_PROJECT_NAME>), we are brought to a page similar to this:
-
-image:figs/sonarQube7.png[SonarQube Web Output]
-
-12 Investigate the Error Causes:
+10 Investigate the Error Causes:
 
 Click on _Code_ in the toolbar above. Then select the package containing the `App.java` class from the list and click on `App.java` and click on the red icons on the left of your code.
 
