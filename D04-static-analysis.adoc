@@ -1,6 +1,51 @@
 === Prerequisites
 
-This tutorial assumes that you have `maven` version 3.x.x installed on your computer and a default maven project created. 
+This tutorial assumes that you have `maven` version 3.x.x installed on your computer. To create a new, default, maven project, simply type the command `mvn -B archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DgroupId=com.mcgill.ca.tutorial3 -DartifactId=tutorial3` in the folder of your choice.
+
+Next we will update the JUnit dependencies. Locate your `pom.xml` file that was created after the above command. The default generated `pom.xml` should look something like:
+
+[Source, java]
+----
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mcgill.ca</groupId>
+  <artifactId>tutorial3</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>tutorial-3</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+----
+
+Change the version number for JUnit from 3.8.1 to 4.12 and remove the `<scope>test</scope> tag`. 
+
+Change the `AppTest.java` class definition to a single empty test:
+[source, java]
+----
+package com.mcgill.ca.tutorial3;
+
+import org.junit.Test;
+
+public class AppTest
+{
+	@Test
+	public void emptyTest() {
+	}
+}
+----
+
+Finally, to make sure everything is working correctly, run the command `mvn clean install` and check that the build succeeded.
+
+This default project will be used in the next sections. 
 
 === SonarQube Static Code Analysis
 
@@ -10,52 +55,40 @@ This section looks at how to use SonarQube, both integrated with Travis and as a
 
 . Navigate to the folder of the working copy of your repository used during the previous tutorial. If you no longer keep a working copy, clone it again.
 
-. Create a new branch from master to use `git branch sonarqube-standalone && git checkout sonarqube-standalone` 
-
-. Go to the SonarQube main page (https://www.sonarqube.org/) and click on the blue _Download_ button.
-	image:figs/sonarQube1.png[Download SonarQube]
+. Go to the SonarQube main page (https://www.sonarqube.org/) and click on the blue _Download_ button. +
+image:figs/sonarQube1.png[Download SonarQube]
 
 . Click on the blue _Community Edition 7.3_ button + 
 image:figs/sonarQube2.png[Download Community Edition]
 
-. Extract the sonarqube-7.3.zip to the location of your choice. 
+. Extract the sonarqube-7.3.zip to the location of your choice. +
   For this tutorial, we unzipped it in C:\
 
-. Start the SonarQube Server  
-
-Assuming you are in the root folder of the sonarqube directory, that is `C:\sonarqube-7.3` this example, you run either:  
-
-`.\bin\[OS]\StartSonar.bat` for windows or `./bin/[OS]/sonar.sh console` for linux or mac environments. 
-
-The OSs that are included are:  
-
-* windows-x86-32  
-* windows-x86-64  
-* macosx-universal-64  
-* linux-x86-32  
-* linux-x86-64  
-
-In this example, we have a Windows machine, so we use `.\bin\windows-x86-64\StartSonar.bat` as a command. The server should boot and when it is finally ready, you should get an output similar to this  
-
-image:figs/sonarQube3.png[SonarQube terminal ready]  
-
-SonarQube created a default webserver at localhost:9000. If you type the latter in your Internet browser, you should get the following page  
-
+. Start the SonarQube Server. +
+  Assuming you are in the root folder of the sonarqube directory, that is `C:\sonarqube-7.3` this example, you run either: +
+  `.\bin\[OS]\StartSonar.bat` for windows or `./bin/[OS]/sonar.sh console` for linux or mac environments. +    
+  The OSs that are included are: +
+  * windows-x86-32 +
+  * windows-x86-64 +
+  * macosx-universal-64 +  
+  * linux-x86-32 +
+  * linux-x86-64 +
+In this example, we have a Windows machine, so we use `.\bin\windows-x86-64\StartSonar.bat` as a command. The server should boot and when it is finally ready, you should get an output similar to this +
+image:figs/sonarQube3.png[SonarQube terminal ready] + 
+SonarQube created a default webserver at localhost:9000. If you type the latter in your Internet browser, you should get the following page +
 image:figs/sonarQube4.png[SonarQube About Page]  
 
-7 Log in the server
+. Log in the server +
+The default account created for your page is admin:admin +
+image:figs/sonarQube5.png[SonarQube Default Logged In Page]
 
-[NOTE]
-The default account created for your page is admin:admin
+. Create Basic Code Smells in the Project +
+Locate the file `App.java` in your maven project and change the class definition to the following +
 
-+image:figs/sonarQube5.png[SonarQube Default Logged In Page]
-
-8 Create Basic Code Smells in the Project
-
-Locate the file `App.java` in your maven project and change the class definition to the following
-
-[Source]
+[source, java]
 ----
+package ca.mcgill.ecse429;
+
 public class App 
 {
     private int x;
@@ -69,10 +102,12 @@ public class App
 }
 ----
 
-9 Create an Empty Test Suite in `AppTest.java`
+. Create an Empty Test Suite in `AppTest.java` +
 
-[Source]
+[Source, java]
 ----
+package com.mcgill.ca.tutorial3;
+
 import org.junit.Test;
 
 public class AppTest 
@@ -100,8 +135,8 @@ public class AppTest
 </dependencies>
 ...
 ----  
-* Add the Sonar Maven plugin and its configuration to the project (e.g., after the `</dependencies>` closing tag)
-+
+* Add the Sonar Maven plugin and its configuration to the project (e.g., after the `</dependencies>` closing tag) +
+
 [source,none]
 ----
 ...
@@ -373,3 +408,8 @@ public static void main( String[] args ) {
 . Commit and push the 2 modified files (`commit add . && git commit -m "Added Infer Static Analyzer" && git push -u origin infer`)
 
 . Go to https://travis-ci.com/ to see your build processes.
+
+
+
+
+
