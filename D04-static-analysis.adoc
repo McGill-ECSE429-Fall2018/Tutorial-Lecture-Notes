@@ -136,6 +136,18 @@ Add the Sonar Maven plugin and its configuration to the project (e.g., after the
 </profiles>
 ...
 ----
++
+[NOTE]
+For gradle 2.1 and above, add the following snippet to the build script: +
+[source,gradle]
+----
+plugins {
+  id "org.sonarqube" version "2.6.2"
+}
+----
++
+Then, you can run analysis using `gradle sonarqube`
+
 
 9 Build the Project +
 In another terminal, run the command `mvn clean install sonar:sonar` at the root of the project folder +
@@ -145,6 +157,7 @@ If we visit the link in the terminal output (it follows the format of http://loc
 image:figs/sonarQube7.png[SonarQube Web Output] +
 
 10 Investigate the Error Causes:
+
 
 Click on _Code_ in the toolbar above. Then select the package containing the `App.java` class from the list and click on `App.java` and click on the red icons on the left of your code.
 
