@@ -386,6 +386,21 @@ public class AppTest
 14 Push your work on the branch and check the output in SonarCloud.io (`git add . && git commit -m "SonarCloud Integration" & git push -u origin sonarqube-travis-integration` +
 image:figs/sonarQube-ci-7.png[New Branch]
 
+=== SonarCloud integration for Project deliverable
+
+1. One team member is registered to SonarCloud organization McGill ECSE429 Fall2018. Follow the steps with that team member's SonarCloud account.
+
+1. Create a SonarCloud project _under the organization_ (and not under your user). Name it `team-NO-blokish`, where `NO` is the placeholder for the two digit team number. Assign a unique project key to it afterwards as shown below. +
+image:figs/sc-create-proj.png[New Project]
+
+1. Generate an access token for the project.
+image:figs/sc-generate-token.png[SC Access Token]
+
+1. On the next page, you will be shown two snippets:
+ * one is to be added to the `build.gradle` file
+ * the other one is the command you can use out-of-the box to build and analyze on SonarCloud
+image:figs/sc-project-build.png[SC Snippets]
+
 === Infer Static Analyzer
 
 . Create and checkout a new branch from master (`git branch infer && git checkout infer`) 

@@ -35,3 +35,9 @@ include::{chapterdir}/D03-Code-Reviews.adoc[]
 
 <<<
 include::{chapterdir}/D04-static-analysis.adoc[]
+
+== Code Coverage
+
+<<<
+include::{chapterdir}/D05-Code-Coverage.adoc[]
+

@@ -1,0 +1,3 @@
+=== EvoSuite installation
+
+1. Download EvoSuite Commandline tool from http://www.evosuite.org/downloads/
