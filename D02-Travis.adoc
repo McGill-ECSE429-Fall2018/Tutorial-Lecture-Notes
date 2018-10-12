@@ -5,7 +5,6 @@
 . Click on the green authorize button at the bottom of the page.
 
 . Activate Travis-CI on your GitHub account +
-image:figs/travis-activate.png[Activate Travis-CI]
 
 . Select the repositories you want to build with Travis (make sure to include your repository that you created for this tutorial). You can modify this setting anytime later as well.
 
