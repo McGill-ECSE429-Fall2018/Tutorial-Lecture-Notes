@@ -75,7 +75,7 @@ script:
 
 . Issue `git push origin HEAD:refs/for/master`. The outputs should show that a new Gerrit change is created.
 +
-[sourcei,none]
+[source,none]
 ----
 Counting objects: 3, done.
 Delta compression using up to 8 threads.

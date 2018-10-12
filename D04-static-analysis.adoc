@@ -216,7 +216,7 @@ image:figs/sonarQube8.png[App errors]
 
 In `AppTest.java`, substitute `emptyTest` with the following:
 
-[Source]
+[source,java]
 ----
 @Test
 public void mainTest() {
