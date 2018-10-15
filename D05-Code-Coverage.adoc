@@ -27,7 +27,7 @@ In the following steps, we assume that the EVOSUITE environment variable points 
 
 . Explore the project sources.
 
-. Build the project locally using `./gradlew build` and ensure that it builds fine.
+. Build the project locally using `./gradlew build` to generate classfiles.
 
 . You can run the app with `./gradlew run`.
 
