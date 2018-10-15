@@ -21,7 +21,7 @@ image:figs/travis-sonar-token.png[Set sonar token]
 
 === Generating Tests using EvoSuite
 [NOTE]
-In the following steps, we assume that the EVOSUITE environment variable points to the evosuite.jar executable, and the program can be started by issuing `java -jar $EVOSUITE`.
+In the following steps, we assume that the `EVOSUITE` environment variable points to the evosuite.jar executable, and the program can be started by issuing `java -jar $EVOSUITE`. For Windows: in the default Windows command line tool this would be `java -jar %EVOSUITE%`, while also make sure that the firewall settings allow EvoSuite to run.
 
 . Navigate to the folder where your working copy of your tutorial 5 repository is located.
 
@@ -63,7 +63,7 @@ java -jar $EVOSUITE -class com.github.cseppento.gradle.evosuite.testprojects.sim
 sourceSets {
     test {
         java {
-            srcDirs = ['./src/test' ,'./evosuite-tests']
+            srcDirs = ['./src/test/java' ,'./evosuite-tests']
         }
     }
 }
