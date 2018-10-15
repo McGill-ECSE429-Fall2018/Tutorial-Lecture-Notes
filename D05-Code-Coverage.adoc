@@ -56,7 +56,7 @@ java -jar $EVOSUITE -class com.github.cseppento.gradle.evosuite.testprojects.sim
 
 . First, add EvoSuite runtime to project dependencies to `simple/simple-deps.gradle`: `implementation 'org.evosuite:evosuite-standalone-runtime:1.0.6'`
 
-. Modify the test sources list in `simple/simple-deps.gradle` by adding the following lines to the end of the file:
+. Modify the test sources list in `simple/simple-app.gradle` by adding the following lines to the end of the file:
 +
 [source,gradle]
 ----
