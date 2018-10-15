@@ -35,7 +35,7 @@ In the following steps, we assume that the `EVOSUITE` environment variable point
 +
 [source,bash]
 ----
-java -jar $EVOSUITE -class com.github.cseppento.gradle.evosuite.testprojects.simple.SimpleStaticSut -projectCP build/classes/java/main/
+java -jar $EVOSUITE -class com.github.cseppento.gradle.evosuite.testprojects.simple.SimpleStaticSut -projectCP build/classes/java/main/ -Duse_separate_classloader=false
 ----
 
 . Explore the switches for EvoSuite with `java -jar $EVOSUITE -help`! Also observe the output of `java -jar $EVOSUITE -listParameters`!
@@ -44,7 +44,7 @@ java -jar $EVOSUITE -class com.github.cseppento.gradle.evosuite.testprojects.sim
 +
 [source,bash]
 ----
-java -jar $EVOSUITE -class com.github.cseppento.gradle.evosuite.testprojects.simple.SimpleObjectSut -projectCP build/classes/java/main/ -criterion BRANCH -Dprint_goals=true -Dprint_missed_goals
+java -jar $EVOSUITE -class com.github.cseppento.gradle.evosuite.testprojects.simple.SimpleObjectSut -projectCP build/classes/java/main/ -Duse_separate_classloader=false -criterion BRANCH -Dprint_goals=true -Dprint_missed_goals
 ----
 
 . Try other settings according to link:https://github.com/EvoSuite/evosuite/wiki/Tutorial%3A-Part-1--Evosuite-on-the-Command-Line#playing-with-evosuite-settings[EvoSuite documentation] to generate tests for the `SimpleObjectSut` class!
