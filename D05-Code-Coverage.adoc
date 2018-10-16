@@ -2,7 +2,9 @@
 [NOTE]
 For this session, we are reusing a sligthly modified version of the example project link:https://github.com/cseppento/gradle-evosuite-plugin/tree/master/test-projects/simple[available here]. +
 
-. Download EvoSuite Commandline tool from http://www.evosuite.org/downloads/
+. Download EvoSuite Commandline tool from http://www.evosuite.org/downloads/ +
+[IMPORTANT]
+EvoSuite is not compatible yet with Java 9 and above.
 
 . Fork the link:https://github.com/McGill-ECSE429-Fall2018/ecse429-tutorial-5[ecse429-tutorial-5] repository *under your GitHub user*. +
 [IMPORTANT]
