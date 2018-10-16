@@ -71,6 +71,22 @@ sourceSets {
 }
 ----
 
+. Commit your tests and make sure they are executed by Gradle.
+[NOTE]
+You might encounter build failure if you have `use_separate_classloader=false` set in EvoSuite test cases. If this is the case, switch it back to `use_separate_classloader=true`.
+
+=== Measuring Code Coverage with Android Studio
+
+. Select a single test class or multiple tests classes, then open the right click menu to run them with coverage +
+image:figs/android-studio-run-coverage.png[Android studio run coverage]
+
+. Android Studio will show the coverage report after running the test. It also highlights which lines were executed by at least one of the test cases +
+image:figs/android-studio-coverage.png[Coverage results]
+
+. You can also export and view coverage results using the button shown below +
+image:figs/test-report-gen.png[Coverage report]
+
+
 === Cleaning Up the Project
 
 **IMPORTANT**: At the end of the tutorial, turn off the build on Travis-CI and delete the project in SonarCloud as shown below, so that this demo project is not taking up the allowed line count on SonarCloud +
