@@ -143,7 +143,8 @@ You may have a different output as the one shown. This is normal as the types an
 We can see the code coverage, the location where the mutations took place, the mutations themselves, the types of mutators and the test suite used to assess mutation score.
 
 . From the ouput above, we update the test cases +
-The test cases are not killing all mutants due to not checking `value[index] == MIN` and `value[index] == MAX` conditions in the boundary. A similar problem occurs for `ti == arraySize` in the while loop. `LibraryTest.java` now contains: +
+The test cases are not killing all mutants due to not checking `value[index] == MIN` and `value[index] == MAX` conditions in the boundary. A similar problem occurs for `ti == arraySize` in the while loop. `LibraryTest.java` now contains: 
++
 [source,java]
 ----
 package com.mcgill.ecse429.tutorial6;
@@ -189,8 +190,9 @@ image:figs/pit-testing-fig-9.png[gradle-pitest-report-2]
 . You can customize the plugin in the `builde.gradle` file using all the parameters for the command line. +
 Reference: http://pitest.org/quickstart/commandline/
 
-. For example, we can specify the mutators we want in `build.gradle`: +
-[source, none]
+. For example, we can specify the mutators we want in `build.gradle`: 
++
+[source,gradle]
 ----
 ...
 pitest {
