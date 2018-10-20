@@ -51,7 +51,8 @@ public class Library {
 }
 ----
 
-. Change the code in the `LibraryTest` class +
+. Change the code in the `LibraryTest` class 
++
 [source,java]
 ----
 package com.mcgill.ecse429.tutorial6;
@@ -84,7 +85,7 @@ public class LibraryTest {
 }
 ----
 
-. Run the Test in coverage mode using Eclemma +
+. Run the Test in coverage mode using Eclemma. +
 Verify that we have 100% branch coverage. +
 image:figs/pit-testing-fig-5.png[Full Branch Coverage]
 
@@ -93,8 +94,9 @@ image:figs/pit-testing-fig-6.png[Full Branch Coverage-Eclemma]
 
 ==== Using Gradle with PIT testing
 
-. Modify the `build.gradle` file to include the pitest plugin +
-[source, none]
+. Modify the `build.gradle` file to include the pitest plugin 
++
+[source,gradle]
 ----
 apply plugin: 'java'
 apply plugin: 'java-library'
