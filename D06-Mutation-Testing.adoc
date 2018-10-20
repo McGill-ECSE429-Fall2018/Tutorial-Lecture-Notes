@@ -92,7 +92,7 @@ image:figs/pit-testing-fig-5.png[Full Branch Coverage]
 . Verify that we have all branch coverage +
 image:figs/pit-testing-fig-6.png[Full Branch Coverage-Eclemma]
 
-==== Using Gradle with PIT testing
+=== Using Gradle with PIT testing
 
 . Modify the `build.gradle` file to include the pitest plugin 
 +
@@ -203,7 +203,7 @@ pitest {
 ...
 ----
 
-==== Using PIT in Eclipse
+=== Using PIT in Eclipse
 
 . Go to _Help_ > _Eclipse Marketplace_ +
 image:figs/pit-testing-fig-10.png[download]
