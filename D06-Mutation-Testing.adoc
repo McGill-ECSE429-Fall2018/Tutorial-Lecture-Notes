@@ -185,7 +185,7 @@ image:figs/pit-testing-fig-9.png[gradle-pitest-report-2]
 
 == Configuring PIT testing
 
-. To understand the different mutants, you can go here: link:http://pitest.org/quickstart/mutators/
+. To understand the different mutants, you can go link:http://pitest.org/quickstart/mutators/[here].
 
 . You can customize the plugin in the `builde.gradle` file using all the parameters for the command line. +
 Reference: http://pitest.org/quickstart/commandline/
@@ -205,7 +205,7 @@ pitest {
 
 ==== Using PIT in Eclipse
 
-1. Go to _Help_ > _Eclipse Marketplace_ +
+. Go to _Help_ > _Eclipse Marketplace_ +
 image:figs/pit-testing-fig-10.png[download]
 
 . Type _pit_ in the search box and find _Pitclipse_ + 
