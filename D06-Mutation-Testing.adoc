@@ -22,7 +22,8 @@ The project may take some time to be created.
 . Create new packages instead of the default ones for the source and test folders (e.g `com.mcgill.ecse429.tutorial6`) +
 image:figs/pit-testing-fig-4.png[Create Packages]
 
-. Change the code in the `Library` class +
+. Change the code in the `Library` class 
++
 [source,java]
 ----
 package com.mcgill.ecse429.tutorial6;
