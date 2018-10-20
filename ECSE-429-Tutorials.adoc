@@ -41,3 +41,9 @@ include::{chapterdir}/D04-static-analysis.adoc[]
 <<<
 include::{chapterdir}/D05-Code-Coverage.adoc[]
 
+
+== Mutation Testing
+
+<<<
+include::{chapterdir}/D06-Mutation-Testing.adoc[]
+
