@@ -213,7 +213,10 @@ image:figs/pit-testing-fig-11.png[download]
 
 . Restart your Eclipse after the installation is successful
 
-. You can now executet the tests in `LibraryTest` class by selecting _Pit Mutation Test_ from the available run configurations +
+. You can now executet the tests in `LibraryTest` class by selecting _Pit Mutation Test_ from the available run configurations. +
+[NOTE]
+If you get a `NullPointerException` for the first run, try re-running it.
++
 image:figs/pit-testing-fig-12.png[pit run as]
 
 . Check the output in the console for where the report is generated. +
