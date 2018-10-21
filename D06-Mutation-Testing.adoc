@@ -1,12 +1,12 @@
 === Mutation Testing Using PIT
 
-This tutorial covers the basics of using PIT (link:http://pitest.org/), both as part of a build using gradle and using an eclipse plugin.
+This tutorial covers the basics of using PIT (link:http://pitest.org/), both as part of a build using Gradle and using an Eclipse plugin.
 
 [NOTE]
-For this tutorial, we assume that you the gradle eclipse plugin installed on your computer. +
-We will create a gradle project from scratch and be testing the method from the fourth question of your first assignment _ReturnAverage(int[], int, int, int)_ . 
+For this tutorial, we assume that you the Gradle Eclipse plugin installed on your computer. +
+We will create a Gradle project from scratch and be testing the method from the fourth question of your first assignment _ReturnAverage(int[], int, int, int)_ . 
 
-. Create a new gradle project in Eclipse by clicking on _File_ > _New_ > _Other_ +
+. Create a new Gradle project in Eclipse by clicking on _File_ > _New_ > _Other_ +
 image:figs/pit-testing-fig-1.png[New Project]
 
 . Under _Gradle_, choose Gradle Project +
@@ -217,4 +217,4 @@ image:figs/pit-testing-fig-12.png[pit run as]
 . Check the output in the console for where the report is generated. +
 image:figs/pit-testing-fig-13.png[pit run] +
 [NOTE]
-The output of the report should be identical to the one we generated with the gradle plugin
+The output of the report should be identical to the one we generated with the Gradle plugin
