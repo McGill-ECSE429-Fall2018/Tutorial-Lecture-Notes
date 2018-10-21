@@ -183,7 +183,7 @@ image:figs/pit-testing-fig-9.png[gradle-pitest-report-2]
 
 . After the second run, we see that the line `ti++;` inside the while loop is useless and a code smell!
 
-== Configuring PIT testing
+=== Configuring PIT testing
 
 . To understand the different mutants, you can go link:http://pitest.org/quickstart/mutators/[here].
 
