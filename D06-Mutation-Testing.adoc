@@ -87,10 +87,9 @@ public class LibraryTest {
 ----
 
 . Run the Test in coverage mode using Eclemma. +
-Verify that we have 100% branch coverage. +
 image:figs/pit-testing-fig-5.png[Full Branch Coverage]
 
-. Verify that we have all branch coverage +
+. Verify that we have 100% branch coverage. +
 image:figs/pit-testing-fig-6.png[Full Branch Coverage-Eclemma]
 
 === Using Gradle with PIT testing
