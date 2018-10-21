@@ -17,7 +17,7 @@ image:figs/pit-testing-fig-3.png[Project Name] +
 [NOTE]
 The project may take some time to be created.
 
-. Create new packages instead of the default ones for the source and test folders (e.g `com.mcgill.ecse429.tutorial6`) +
+. Create a new package instead of the default ones for both the source and test folders (e.g `com.mcgill.ecse429.tutorial6`) and move the default generated classes (`Library` and `LibraryTest`) to this package. +
 image:figs/pit-testing-fig-4.png[Create Packages]
 
 . Change the code in the `Library` class 
@@ -27,25 +27,28 @@ image:figs/pit-testing-fig-4.png[Create Packages]
 package com.mcgill.ecse429.tutorial6;
 
 public class Library {
-	
+
 	public static double returnAverage(int value[], int arraySize, int MIN, int MAX) {
-    	int index, ti, tv, sum;
-    	double average;
-    	index = 0; ti = 0; tv = 0; sum = 0;
-    	while (ti < arraySize && value[index] != -999) {
-    		ti++;
-	    	if (value[index] >= MIN && value[index] <= MAX) {
-		    	tv++;
-		    	sum += value[index];
-	    	}
-	    	index++;
-    	}
-    	if (tv > 0)
-    		average = (double) sum/tv;
-    	else
-    		average = (double) -999;
-    	return average;
-	 }
+		int index, ti, tv, sum;
+		double average;
+		index = 0;
+		ti = 0;
+		tv = 0;
+		sum = 0;
+		while (ti < arraySize && value[index] != -999) {
+			ti++;
+			if (value[index] >= MIN && value[index] <= MAX) {
+				tv++;
+				sum += value[index];
+			}
+			index++;
+		}
+		if (tv > 0)
+			average = (double) sum / tv;
+		else
+			average = (double) -999;
+		return average;
+	}
 }
 ----
 
