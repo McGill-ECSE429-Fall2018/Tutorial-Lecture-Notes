@@ -131,7 +131,7 @@ pitest {
 }
 ----
 
-. Navigate to the project folder and run the command `gradlew build pitest` +
+. Navigate to the project folder and run the command `gradle build pitest` (you can also use the Gradle wrapper script) +
 image:figs/pit-testing-fig-7.png[gradle-pitest]
 
 . In your projects root folder, open the file `./build/reports/pitests/index.html` +
@@ -178,7 +178,7 @@ public class LibraryTest {
 }
 ----
 
-. Rerun pit mutation with `gradlew build pitest` and reopen the outputted report `index.html` +
+. Rerun pit mutation with `gradle build pitest` and reopen the outputted report `index.html` +
 image:figs/pit-testing-fig-9.png[gradle-pitest-report-2]
 
 . After the second run, we see that the line `ti++;` inside the while loop is useless and a code smell!
