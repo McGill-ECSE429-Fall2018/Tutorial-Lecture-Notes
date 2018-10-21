@@ -4,7 +4,7 @@ This tutorial covers the basics of using PIT (link:http://pitest.org/), both as 
 
 [NOTE]
 For this tutorial, we assume that you the Gradle Eclipse plugin installed on your computer. +
-We will create a Gradle project from scratch and be testing the method from the fourth question of your first assignment _ReturnAverage(int[], int, int, int)_ . 
+We will create a Gradle project from scratch and be testing the method from the fourth question of your first assignment _returnAverage(int[], int, int, int)_ . 
 
 . Create a new Gradle project in Eclipse by clicking on _File_ > _New_ > _Other_ +
 image:figs/pit-testing-fig-1.png[New Project]
