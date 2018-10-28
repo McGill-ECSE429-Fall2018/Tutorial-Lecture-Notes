@@ -1,0 +1,137 @@
+=== Android Instrumentation tests
+
+With Android, we have previously created *Local tests* that that run on your local machine only. In this tutorial we show how you can create *Instrumented tests*, unit tests that run on an Android device or emulator. See more about the difference between local and instrumentation tests at: https://developer.android.com/training/testing/unit-testing/.
+
+==== Project dependencies and setup
+
+This section takes configurations from the link:https://developer.android.com/training/testing/set-up-project[Android documentation]. You can follow the steps below by reusing the example project from <<07-Testing-Using-Mocks.adoc#initial-project,the first step of the previous section>>.
+
+. Add the used libraries to `<module-name>/src/main./AndroidManifest.xml` *within* the `<application>...</application>` tags
++
+[source,xml]
+----
+<uses-library android:name="android.test.base"
+    android:required="false" />
+<uses-library android:name="android.test.runner"
+    android:required="false" />
+<uses-library android:name="android.test.mock"
+    android:required="false" />
+----
+
+The next few steps will update the module's `build.gradle` file (`<module-name>/build.gradle` file).
+
+. Speficy the used libraries within the `android` task as well.
++
+[source,gradle]
+----
+android { 
+    // ... other settings 
+    useLibrary 'android.test.runner'
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
+    // ... other settings 
+}
+----
+
+
+. Add the following instrumentation testing dependencies.
++
+[source,gradle]
+----
+dependencies {
+    // ... other dependencies
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.0.0'
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    // Assertions
+    androidTestImplementation 'androidx.test.ext:junit:1.0.0'
+    androidTestImplementation 'androidx.test.ext:truth:1.0.0'
+    androidTestImplementation 'com.google.truth:truth:0.42'
+    // Espresso dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.0'
+    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.0'
+    // The following Espresso dependency can be either "implementation"
+    // or "androidTestImplementation", depending on whether you want the
+    // dependency to appear on your APK's compile classpath or the test APK
+    // classpath.
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.0'
+    // Add these for applications having significant library dependencies
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    // Android-specific Mockito
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2:'
+
+}
+----
+
+. Update the `android` task as shown below. You may need to download the new SDK version.
++
+[source,gradle]
+----
+android {
+    compileSdkVersion 28
+    // ...
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 28
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    // ...
+----
+
+
+==== Creating an instrumentation test
+
+. Create the `<module-name>/src/androidTest/java` folder structure. This is the default location where the framework will look for instrumentation tests.
+
+. Create a new test class `InstrumentationTest` under the same package name as the package name of the main activity. +
+image:figs/TODO.png[Create instrumentation test class]
+
+. Add the implementation and annotations as follows 
++
+[source,java]
+----
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.SmallTest;
+import androidx.test.rule.ActivityTestRule;
+
+import static com.google.common.truth.Truth.assertThat;
+
+
+@RunWith(AndroidJUnit4.class)
+@SmallTest
+public class InstrumentationTest {
+
+    @Rule
+    public ActivityTestRule<UI> ui = new ActivityTestRule<>(UI.class);
+
+    @Test
+    public void aTest() throws Throwable {
+
+        ui.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                GameView gv = new GameView(ui.getActivity());
+                PieceUI piece = gv.findPiece(0, "X5");
+                assertThat(piece).isNotNull();
+            }
+        });
+
+    }
+
+}
+----
+
+. After right clicking on the class you can run the instrumentation test using a device.
+
+[NOTE]
+If you are planning on using Mockito with instrumentation tests, replace the `@RunWith(AndroidJUnit4.class)` annotation with `@RunWith(MockitoJUnitRunner.class)`.

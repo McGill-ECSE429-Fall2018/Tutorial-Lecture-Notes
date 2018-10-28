@@ -1,0 +1,4 @@
+=== Testing Using Mocks
+
+
+. anchor:initial-project[]Clone the initial project from link:TODO[this link] and import it to Android Studio.

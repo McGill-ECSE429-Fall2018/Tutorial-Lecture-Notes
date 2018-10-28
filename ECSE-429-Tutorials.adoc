@@ -21,29 +21,36 @@ Sections of the tutorial will continuously be published at this web page.
 == Git Recap
 
 <<<
-include::{chapterdir}/D01-Git-Basics.adoc[]
+include::{chapterdir}/01-Git-Basics.adoc[]
 
 <<<
-include::{chapterdir}/D02-Travis.adoc[]
+include::{chapterdir}/02-Travis.adoc[]
 
 == Code Reviews
 
 <<<
-include::{chapterdir}/D03-Code-Reviews.adoc[]
+include::{chapterdir}/03-Code-Reviews.adoc[]
 
 == Static Analysis
 
 <<<
-include::{chapterdir}/D04-static-analysis.adoc[]
+include::{chapterdir}/04-static-analysis.adoc[]
 
 == Test Generation and Code Coverage
 
 <<<
-include::{chapterdir}/D05-Code-Coverage.adoc[]
+include::{chapterdir}/05-Code-Coverage.adoc[]
 
 
 == Mutation Testing
 
 <<<
-include::{chapterdir}/D06-Mutation-Testing.adoc[]
+include::{chapterdir}/06-Mutation-Testing.adoc[]
 
+== Integration Testing
+
+<<<
+include::{chapterdir}/07-Testing-Using-Mocks.adoc[]
+
+<<<
+include::{chapterdir}/08-Android-Instrumentation-Tests.adoc[]
