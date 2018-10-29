@@ -69,3 +69,70 @@ public class IntegrationTest {
     // ...
 }
 ----
+
+=== Local UI Tests
+
+. Add the following to the module's `build.gradle` file within the `android` task
++
+[source,gradle]
+----
+android {
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+    // ... other settings
+}
+----
+
+. In this same Gradle file, add/verify dependencies
++
+[source,gradle]
+----
+testImplementation 'junit:junit:4.12'
+testImplementation 'org.mockito:mockito-core:2.23.0'
+testImplementation 'org.robolectric:robolectric:4.0'
+----
+
+. Create a new test class `LocalUITest` within the `src/test/java` directory in package `ca.mcgill.ecse321.eventregistration`
++
+[source,java]
+----
+package ca.mcgill.ecse321.eventregistration;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
+
+@RunWith(RobolectricTestRunner.class)
+public class LocalUITest {
+
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+    @Mock
+    public AsyncHttpClient httpClient;
+
+    @Test
+    public void aTest() {
+        MainActivity mainActivity = Robolectric.setupActivity(MainActivity.class);
+        mainActivity.setHttpUtils(new HttpUtils(httpClient));
+        mainActivity.addParticipant(null);
+        Mockito.verify(httpClient).post(Mockito.anyString(),Mockito.<RequestParams>any(),Mockito.<ResponseHandlerInterface>any());
+    }
+
+}
+----
+
+. Run it as a local test.
