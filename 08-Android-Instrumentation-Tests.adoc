@@ -89,7 +89,7 @@ android {
 image:figs/create-instrumentaiton-test-class.png[Create instrumentation test class] +
 image:figs/create-instr-test-class.png[Create instrumentation test class]
 
-. Add the implementation and annotations as follows 
+. Add the imports and annotations as follows 
 +
 [source,java]
 ----
@@ -120,66 +120,69 @@ import androidx.test.rule.ActivityTestRule;
 
 import static com.google.common.truth.Truth.assertThat;
 
-
 @RunWith(MockitoJUnitRunner.class)
 @SmallTest
 public class InstrumentationTest {
-
-    public InstrumentationTest() {
-    }
-
-    private class ParticipantsAnswer implements Answer<JSONArray> {
-        @Override
-        public JSONArray answer(InvocationOnMock invocation) throws Throwable {
-            JSONArray array = new JSONArray();
-            array.put("Participant 1")
-                    .put("Participant 2")
-                    .put("Participant 3");
-            return array;
-        }
-    }
-
-    @Mock
-    AsyncHttpClient httpClient;
-
-    @Rule
-    public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
-
-    @Test
-    public void aTest() throws Throwable {
-        final MainActivity mainActivity = activityTestRule.getActivity();
-        mainActivity.setHttpUtils(new HttpUtils(httpClient));
-
-        Mockito.when(httpClient.get(Mockito.anyString(),Mockito.<RequestParams>anyObject(), Mockito.<ResponseHandlerInterface>anyObject())).thenAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws JSONException {
-                Object[] arguments = invocation.getArguments();
-                JsonHttpResponseHandler h = (JsonHttpResponseHandler) arguments[2];
-                h.onSuccess(200,null,new JSONArray()
-                        .put(new JSONObject().put("name", "P1"))
-                        .put(new JSONObject().put("name", "P2"))
-                        .put(new JSONObject().put("name", "P3")));
-                return null;
-            }
-        });
-
-        final ListView participantList = mainActivity.findViewById(R.id.participant_list);
-        final int numberOfParticipants = participantList.getAdapter().getCount();
-
-        assertThat(numberOfParticipants).isEqualTo(0);
-
-        Button button = (Button) mainActivity.findViewById(R.id.button);
-        button.performClick();
-
-        int numberOfParticipants2 = participantList.getAdapter().getCount();
-        assertThat(numberOfParticipants2).isEqualTo(3);
-    }
 
 }
 ----
 +
 [NOTE]
 If you are not planning on using Mockito with instrumentation tests, you can replace the `@RunWith(MockitoJUnitRunner.class)` annotation with `@RunWith(AndroidJUnit4.class)`.
+
+. Within this class, create a private class that passes the JSON answer for a HTTP request via the handler (JSON Handler) extracted from the method call
++
+[source,java]
+----
+
+private class ParticipantsAnswer implements Answer<JSONArray> {
+    @Override
+    public Object answer(InvocationOnMock invocation) throws JSONException {
+        Object[] arguments = invocation.getArguments();
+        JsonHttpResponseHandler h = (JsonHttpResponseHandler) arguments[2];
+        h.onSuccess(200,null,new JSONArray()
+                .put(new JSONObject().put("name", "P1"))
+                .put(new JSONObject().put("name", "P2"))
+                .put(new JSONObject().put("name", "P3")));
+        return null;
+    }
+}
+----
+
+. Add fields to the `InstrumentationTest` class
++
+[source,java]
+----
+@Mock
+AsyncHttpClient httpClient;
+
+@Rule
+public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
+----
+
+. Add the implementation to the test case
++
+[source,java]
+----
+@Test
+public void aTest() throws Throwable {
+    final MainActivity mainActivity = activityTestRule.getActivity();
+    mainActivity.setHttpUtils(new HttpUtils(httpClient));
+
+    Mockito.when(httpClient.get(Mockito.anyString(),Mockito.<RequestParams>anyObject(), Mockito.<ResponseHandlerInterface>anyObject())).thenAnswer(new ParticipantsAnswer());
+
+    final ListView participantList = mainActivity.findViewById(R.id.participant_list);
+    final int numberOfParticipants = participantList.getAdapter().getCount();
+
+    assertThat(numberOfParticipants).isEqualTo(0);
+
+    Button button = (Button) mainActivity.findViewById(R.id.button);
+    button.performClick();
+
+    int numberOfParticipants2 = participantList.getAdapter().getCount();
+    assertThat(numberOfParticipants2).isEqualTo(3);
+}
+----
 
 . After right clicking on the class you can run the instrumentation test. Select the virtual device to run the tests on.
 
