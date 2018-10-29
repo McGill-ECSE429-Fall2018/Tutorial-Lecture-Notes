@@ -40,34 +40,30 @@ android {
 ----
 dependencies {
     // ... other dependencies
-    // Core library
+    // Core library  
     androidTestImplementation 'androidx.test:core:1.0.0'
-    // AndroidJUnitRunner and JUnit Rules
+    // AndroidJUnitRunner and JUnit Rules  
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'
-    // Assertions
+    // Assertions  
     androidTestImplementation 'androidx.test.ext:junit:1.0.0'
     androidTestImplementation 'androidx.test.ext:truth:1.0.0'
     androidTestImplementation 'com.google.truth:truth:0.42'
-    // Espresso dependencies
+    // Espresso dependencies  
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.0'
-    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.0'
-    // The following Espresso dependency can be either "implementation"
-    // or "androidTestImplementation", depending on whether you want the
-    // dependency to appear on your APK's compile classpath or the test APK
-    // classpath.
-    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.0'
-    // Add these for applications having significant library dependencies
-    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    // Add these for applications having significant library dependencies  
+    androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
     // Android-specific Mockito
-    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2:'
-
+    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2:'
 }
 ----
++
+[NOTE]
+For instrumentation tests only Mockito 1.9.x can be used currently (via the dexmaker dependency).
 
 . Update the `android` task as shown below. You may need to download the new SDK version.
 +
@@ -90,48 +86,118 @@ android {
 . Create the `<module-name>/src/androidTest/java` folder structure. This is the default location where the framework will look for instrumentation tests.
 
 . Create a new test class `InstrumentationTest` under the same package name as the package name of the main activity. +
-image:figs/TODO.png[Create instrumentation test class]
+image:figs/create-instrumentaiton-test-class.png[Create instrumentation test class] +
+image:figs/create-instr-test-class.png[Create instrumentation test class]
 
 . Add the implementation and annotations as follows 
 +
 [source,java]
 ----
+package ca.mcgill.ecse321.eventregistration;
+
+import android.widget.Button;
+import android.widget.ListView;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
 import androidx.test.rule.ActivityTestRule;
 
 import static com.google.common.truth.Truth.assertThat;
 
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(MockitoJUnitRunner.class)
 @SmallTest
 public class InstrumentationTest {
 
+    public InstrumentationTest() {
+    }
+
+    private class ParticipantsAnswer implements Answer<JSONArray> {
+        @Override
+        public JSONArray answer(InvocationOnMock invocation) throws Throwable {
+            JSONArray array = new JSONArray();
+            array.put("Participant 1")
+                    .put("Participant 2")
+                    .put("Participant 3");
+            return array;
+        }
+    }
+
+    @Mock
+    AsyncHttpClient httpClient;
+
     @Rule
-    public ActivityTestRule<UI> ui = new ActivityTestRule<>(UI.class);
+    public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
     public void aTest() throws Throwable {
+        final MainActivity mainActivity = activityTestRule.getActivity();
+        mainActivity.setHttpUtils(new HttpUtils(httpClient));
 
-        ui.runOnUiThread(new Runnable() {
+        Mockito.when(httpClient.get(Mockito.anyString(),Mockito.<RequestParams>anyObject(), Mockito.<ResponseHandlerInterface>anyObject())).thenAnswer(new Answer() {
             @Override
-            public void run() {
-                GameView gv = new GameView(ui.getActivity());
-                PieceUI piece = gv.findPiece(0, "X5");
-                assertThat(piece).isNotNull();
+            public Object answer(InvocationOnMock invocation) throws JSONException {
+                Object[] arguments = invocation.getArguments();
+                JsonHttpResponseHandler h = (JsonHttpResponseHandler) arguments[2];
+                h.onSuccess(200,null,new JSONArray()
+                        .put(new JSONObject().put("name", "P1"))
+                        .put(new JSONObject().put("name", "P2"))
+                        .put(new JSONObject().put("name", "P3")));
+                return null;
             }
         });
 
+        final ListView participantList = mainActivity.findViewById(R.id.participant_list);
+        final int numberOfParticipants = participantList.getAdapter().getCount();
+
+        assertThat(numberOfParticipants).isEqualTo(0);
+
+        Button button = (Button) mainActivity.findViewById(R.id.button);
+        button.performClick();
+
+        int numberOfParticipants2 = participantList.getAdapter().getCount();
+        assertThat(numberOfParticipants2).isEqualTo(3);
     }
 
 }
 ----
-
-. After right clicking on the class you can run the instrumentation test using a device.
-
++
 [NOTE]
-If you are planning on using Mockito with instrumentation tests, replace the `@RunWith(AndroidJUnit4.class)` annotation with `@RunWith(MockitoJUnitRunner.class)`.
+If you are not planning on using Mockito with instrumentation tests, you can replace the `@RunWith(MockitoJUnitRunner.class)` annotation with `@RunWith(AndroidJUnit4.class)`.
+
+. After right clicking on the class you can run the instrumentation test. Select the virtual device to run the tests on.
+
+. The tests failed. Try understanding the error message!
+
+. Fix the tests by including the last part of the test in  `runOnUiThread()`
++
+[source,java]
+----
+activityTestRule.runOnUiThread(new Runnable() {
+    @Override
+    public void run() {
+        Button button = (Button) mainActivity.findViewById(R.id.button);
+        button.performClick();
+        int numberOfParticipants2 = participantList.getAdapter().getCount();
+        assertThat(numberOfParticipants2).isEqualTo(3);
+    }
+});
+----
+
+. Finally, exploit the _Fluent API_ of Mockito and clean up your code. Import all static methods with `static import`!
