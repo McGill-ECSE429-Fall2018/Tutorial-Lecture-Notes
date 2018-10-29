@@ -9,6 +9,15 @@
 
 . Add the Mockito gradle dependency in `app/build.gradle` for compiling test sources: `testImplementation 'org.mockito:mockito-core:2.23.0'`
 
+. In the same `build.gradle` file, add to the `android` task
++
+[source,gradle]
+----
+testOptions {
+        unitTests.returnDefaultValues = true
+}
+----
+
 . Locate the `ExampleUnitTest.java` and refactor the class' name to `IntegrationTest`. +
 image:figs/refactor-test-class.png[Refactor class name] 
 
