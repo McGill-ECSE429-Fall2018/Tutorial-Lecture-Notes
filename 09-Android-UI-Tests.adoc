@@ -1,0 +1,119 @@
+=== Android User Interface Tests
+
+This tutorial shows how you can create UI tests using instrumentation testing with the link:https://github.com/RobotiumTech/robotium[Robotium framework].
+
+. Clone the initial Android project from link:https://github.com/McGill-ECSE429-Fall2018/ecse429-tutorial-8[here] and import it to Android Studio.
+
+. Add the following dependency to the `app` module
++
+[source,gradle]
+----
+dependencies {
+  // ... other dependencies
+   implementation 'com.jayway.android.robotium:robotium-solo:5.2.1'
+}
+----
+
+. Create the `<module-name>/src/androidTest/java` folder structure.
+
+. Create a new test class `RobotiumTest` under the same package name as the package name of the main activity. (In the figure the class name does not match.) +
+image:figs/create-instrumentaiton-test-class.png[Create instrumentation test class] +
+image:figs/create-instr-test-class.png[Create instrumentation test class]
+
+. Add the initial implementation of the Robotium test class
++
+[source,java]
+----
+package ca.mcgill.ecse321.eventregistration;
+
+import android.test.ActivityInstrumentationTestCase2;
+import android.widget.EditText;
+
+import com.robotium.solo.Solo;
+
+public class RobotiumTest extends ActivityInstrumentationTestCase2<MainActivity> {
+    private Solo solo;
+
+    private static final String LAUNCHER_ACTIVITY_FULL_CLASSNAME = "ca.mcgill.ecse321.eventregistration.MainActivity";
+
+    private static Class<?> launcherActivityClass;
+
+    static {
+        try {
+            launcherActivityClass = Class.forName(LAUNCHER_ACTIVITY_FULL_CLASSNAME);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public RobotiumTest() throws ClassNotFoundException {
+        super((Class<MainActivity>) launcherActivityClass);
+    }
+
+    private String participantName;
+    private String testParticipantName = "TestParticipant";
+
+    public void setUp() throws Exception {
+        super.setUp();
+        solo = new Solo(getInstrumentation());
+
+        int last3digitsOfID = 1586; // Ensure uniqueness of name
+        participantName = "Participant" + last3digitsOfID;
+        getActivity();
+    }
+
+    @Override
+    public void tearDown() throws Exception {
+        solo.finishOpenedActivities();
+        super.tearDown();
+    }
+}
+----
+
+. Add a test case to see if registration succeeds
++
+[source,java]
+----
+public void testRegisterSucceeds() throws InterruptedException {
+    solo.waitForActivity("MainActivity", 2000);
+
+    EditText editText = solo.getEditText("Who?");
+    solo.enterText(editText,participantName);
+    solo.clickOnText(solo.getString(R.string.newparticipant_button));
+
+    boolean errorTextFound = solo.waitForText("exception", 1, 5000);
+    assertFalse(errorTextFound);
+}
+----
+
+. Create a participant named _TestParticipant_ by issuing a POST request to https://eventregistration-backend-123.herokuapp.com/participants/TestParticipant
+
+. Add a test case to see if registration fails if the participant is already in the database
++
+[source,java]
+----
+public void testRegisterFails() throws InterruptedException {
+    solo.waitForActivity("MainActivity", 2000);
+
+    EditText editText = solo.getEditText("Who?");
+    solo.enterText(editText,testParticipantName);
+    solo.clickOnText(solo.getString(R.string.newparticipant_button));
+
+    boolean errorTextFound = solo.waitForText("exception", 1, 5000);
+    assertTrue(errorTextFound);
+}
+----
+
+. Add a test case to see if the list of participant contains the existing participant "TestParticipant"
++
+[source,java]
+----
+ public void testListRefreshes() {
+    solo.clickOnText(solo.getString(R.string.refresh_participant_list));
+
+    boolean textFound = solo.waitForText(testParticipantName, 1, 5000, true);
+
+    assertTrue(textFound);
+}
+----
