@@ -86,6 +86,15 @@ public void testRegisterSucceeds() throws InterruptedException {
 ----
 
 . Create a participant named _TestParticipant_ by issuing a POST request to https://eventregistration-backend-123.herokuapp.com/participants/TestParticipant
++
+[source,bash]
+----
+# Add a participant called TestParticipant to the database
+curl -X POST https://eventregistration-backend-123.herokuapp.com/participants/TestParticipant
+
+# Make sure participant was added by issuing a get request
+curl GET https://eventregistration-backend-123.herokuapp.com/participants/
+----
 
 . Add a test case to see if registration fails if the participant is already in the database
 +
@@ -115,3 +124,5 @@ public void testRegisterFails() throws InterruptedException {
     assertTrue(textFound);
 }
 ----
+
+. Start the Robotium Instrumentation Test on seleted device
