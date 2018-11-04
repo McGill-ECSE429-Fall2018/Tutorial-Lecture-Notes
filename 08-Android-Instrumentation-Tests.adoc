@@ -1,4 +1,4 @@
-=== Android Instrumentation tests
+=== Android Instrumentation Tests
 
 With Android, we have previously created *Local tests* that that run on your local machine only. In this tutorial we show how you can create *Instrumented tests*, unit tests that run on an Android device or emulator. See more about the difference between local and instrumentation tests at: https://developer.android.com/training/testing/unit-testing/.
 
