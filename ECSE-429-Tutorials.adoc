@@ -54,3 +54,8 @@ include::{chapterdir}/07-Testing-Using-Mocks.adoc[]
 
 <<<
 include::{chapterdir}/08-Android-Instrumentation-Tests.adoc[]
+
+== Android User Interface Tests
+
+<<<
+include::{chapterdir}/09-Android-UI-Tests.adoc[]

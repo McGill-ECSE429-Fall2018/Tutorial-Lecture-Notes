@@ -1,5 +1,3 @@
-=== Android User Interface Tests
-
 This tutorial shows how you can create UI tests using instrumentation testing with the link:https://github.com/RobotiumTech/robotium[Robotium framework].
 
 . Clone the initial Android project from link:https://github.com/McGill-ECSE429-Fall2018/ecse429-tutorial-8[here] and import it to Android Studio.
