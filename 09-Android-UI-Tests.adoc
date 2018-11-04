@@ -56,8 +56,8 @@ public class RobotiumTest extends ActivityInstrumentationTestCase2<MainActivity>
         super.setUp();
         solo = new Solo(getInstrumentation());
 
-        int last3digitsOfID = 1586; // Ensure uniqueness of name
-        participantName = "Participant" + last3digitsOfID;
+        int uniqueId = 1586; // Ensure uniqueness of name
+        participantName = "Participant" + uniqueId;
         getActivity();
     }
 
