@@ -126,3 +126,7 @@ public void testRegisterFails() throws InterruptedException {
 ----
 
 . Start the Robotium Instrumentation Test on seleted device
+
+==== Running Android Emulator on Travis-CI
+
+Instrumentation tests require a runtime Android. This means Travis needs to run one instance during the build to successfully execute tests. You can use the following example configuration for getting started on how to run an emulator on Travis-CI: https://gist.github.com/harmittaa/7d3c51041ffd0e54cda9807e95593309
