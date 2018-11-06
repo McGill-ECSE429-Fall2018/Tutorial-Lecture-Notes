@@ -52,6 +52,7 @@ public class RobotiumTest extends ActivityInstrumentationTestCase2<MainActivity>
     private String participantName;
     private String testParticipantName = "TestParticipant";
 
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         solo = new Solo(getInstrumentation());
