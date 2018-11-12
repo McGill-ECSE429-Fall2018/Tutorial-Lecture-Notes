@@ -206,8 +206,8 @@ public class CucumberRunner {
 }
 ----
 
-. Create a new class `CucumberSteps` again in the ``ca.mcgill.ecse321.eventregistration.test`. Your file structure should look like
-+ image:figs/fig-04-tutorial-10.png[complete folder structure
+. Create a new class `CucumberSteps` again in the ``ca.mcgill.ecse321.eventregistration.test`. Your file structure should look like + 
+image:figs/fig-04-tutorial-10.png[complete folder structure]
 
 . Add initializing code to `CucumberSteps`
 +
