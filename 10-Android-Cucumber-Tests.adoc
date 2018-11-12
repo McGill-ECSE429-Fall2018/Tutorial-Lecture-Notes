@@ -310,3 +310,6 @@ public void i_should_see_some_random_guy__in_the_list(Integer int1) {
 
 . Finally, rerun the tests under `CucumberSteps` +
 image:figs/fig-06-tutorial-10.png[cucumber tests passed]
+
+. Under the _Logcat_ tab you can filter the view to see the output of Cucumber +
+image:figs/logcat-filter.png[Logcat output]
