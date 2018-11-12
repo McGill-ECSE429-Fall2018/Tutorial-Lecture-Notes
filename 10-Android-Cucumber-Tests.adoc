@@ -28,9 +28,9 @@ Feature: Add a participant
     Then I should see <see> in the list
 
     Examples:
-      | username           | see   |
+      | username          | see               |
       | some_random_guy_1 | some_random_guy_1 |
-      | some_random_guy_2| some_random_guy_2 |
+      | some_random_guy_2 | some_random_guy_2 |
       | some_random_guy_3 | some_random_guy_3 |
 ----
 
