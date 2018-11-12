@@ -59,3 +59,6 @@ include::{chapterdir}/08-Android-Instrumentation-Tests.adoc[]
 
 <<<
 include::{chapterdir}/09-Android-UI-Tests.adoc[]
+
+<<<
+include::{chapterdir}/10-Android-Cucumber-Tests.adoc[]
