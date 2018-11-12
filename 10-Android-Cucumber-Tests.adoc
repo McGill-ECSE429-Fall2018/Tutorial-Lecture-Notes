@@ -1,6 +1,6 @@
-This tutorial shows how you can write acceptance using the link:https://github.com/cucumber/cucumber-jvm[Cucumber tool] in a Behaviour-Driven Development approach.
+This tutorial shows how you can write acceptance test using the link:https://github.com/cucumber/cucumber-jvm[Cucumber tool] in a Behaviour-Driven Development approach.
 
-. Clone the initial Android project from link:https://github.com/McGill-ECSE429-Fall2018/ecse429-tutorial-8-solution[here] and import it to Android Studio
+. Clone the initial Android project from link:https://github.com/McGill-ECSE429-Fall2018/ecse429-tutorial-9[here] and import it to Android Studio
 
 . Install the link:https://plugins.jetbrains.com/plugin/7211-gherkin[Gherkin] plugin for Android Studio +
 Click on _File_ > _Settings_ > _Plugins_ > _Browse Repositories_ +
@@ -39,13 +39,13 @@ Feature: Add a participant
 [source,gradle]
 ----
 android {
-    ...  
+    // ...  
     defaultConfig {
-        ...
+        // ...
         testInstrumentationRunner "ca.mcgill.ecse321.eventregistration.Instrumentation"
-        ...
+        // ...
     }
-    ...
+    // ...
 
     sourceSets {
         androidTest {
@@ -57,13 +57,13 @@ android {
             }
         }
     }
-    ...
+    // ...
 
     compileOptions {
-        ...
+        // ...
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
-        ...
+        // ...
     }
 }
 ----
@@ -73,19 +73,18 @@ android {
 [source,gradle]
 ----
 dependencies {
-    ...
+    // ...
     androidTestImplementation 'io.cucumber:cucumber-junit:3.0.2'
     androidTestImplementation group: 'io.cucumber', name: 'cucumber-android', version: '3.0.2'
     androidTestImplementation 'io.cucumber:cucumber-picocontainer:3.0.2'
     androidTestImplementation group: 'io.cucumber', name: 'cucumber-jvm', version: '3.0.2', ext: 'pom'
     androidTestImplementation 'io.cucumber:cucumber-core:3.0.2'
     androidTestImplementation 'io.cucumber:cucumber-jvm-deps:1.0.6'
-    ...
+    // ...
 }
----- +
-[NOTE]
-----
-For convenience, here is the full specification of the `app.gradle` file
+---- 
++
+NOTE: For convenience, below is the full specification of the `app.gradle` file
 +
 [source,gradle]
 ----
