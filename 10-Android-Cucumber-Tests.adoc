@@ -73,6 +73,11 @@ android {
 ----
 dependencies {
     // ...
+
+    //Runner
+    androidTestImplementation( 'com.android.support.test:runner:0.4.1' ){
+        exclude module: 'junit'
+    }
     androidTestImplementation 'io.cucumber:cucumber-junit:3.0.2'
     androidTestImplementation group: 'io.cucumber', name: 'cucumber-android', version: '3.0.2'
     androidTestImplementation 'io.cucumber:cucumber-picocontainer:3.0.2'
