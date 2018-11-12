@@ -188,7 +188,7 @@ public class Instrumentation extends AndroidJUnitRunner {
 +
 [source,java]
 ----
-package ca.mcgill.ecse321.eventregistration;
+package ca.mcgill.ecse321.eventregistration.test;
 
 import cucumber.api.CucumberOptions;
 
