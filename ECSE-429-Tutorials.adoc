@@ -60,5 +60,7 @@ include::{chapterdir}/08-Android-Instrumentation-Tests.adoc[]
 <<<
 include::{chapterdir}/09-Android-UI-Tests.adoc[]
 
+== Acceptance Testing
+
 <<<
 include::{chapterdir}/10-Android-Cucumber-Tests.adoc[]
