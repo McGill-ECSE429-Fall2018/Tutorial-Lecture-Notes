@@ -21,7 +21,6 @@ Feature: Add a participant
 
   Scenario Outline: Add new participant to the main activity
     Given I have a MainActivity
-    When backend is ready
     When I input username <username> in text field 'Who?'
     And I press 'Add Participant' button
     When I click on the 'Refresh Participant List' button
@@ -259,11 +258,6 @@ image:figs/fig-05-tutorial-10.png[cucumber error message]
 public void i_have_a_MainActivity() throws Exception {
     solo = new Solo(getInstrumentation());
     getActivity();
-}
-
-@When("backend is ready")
-public void backend_is_ready() throws InterruptedException {
-
 }
 
 @When("I input username some_random_guy_{int} in text field {string}")
