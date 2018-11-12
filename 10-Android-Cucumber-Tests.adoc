@@ -214,6 +214,8 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
+import ca.mcgill.ecse321.eventregistration.MainActivity;
+
 public class CucumberSteps extends ActivityInstrumentationTestCase2<MainActivity> {
     private Solo solo;
 
