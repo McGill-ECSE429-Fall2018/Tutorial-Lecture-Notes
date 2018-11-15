@@ -1,0 +1,4 @@
+This material is included in two public tutorials:
+
+. AssertJ: http://www.vogella.com/tutorials/AssertJ/article.html (Sections 1-6)
+. JUnit5: http://www.vogella.com/tutorials/JUnit/article.html#junit5 (Sections 10-11)
