@@ -77,6 +77,41 @@ You can download the resulting graphml link:figs/shuttler.graphml[from here]
 java -jar $GRAPHWALKER offline --model shuttler.graphml "random(vertex_coverage(100))" --start-element v_Initializing
 ----
 +
+Output:
++
+[source,none]
+----
+{"currentElementName":"v_Initializing"}
+{"currentElementName":"e_readyToGo"}
+{"currentElementName":"v_TransferingLoad"}
+{"currentElementName":"e_loaded"}
+{"currentElementName":"v_lightsOn_accelerating"}
+{"currentElementName":"e_daylightDetected"}
+{"currentElementName":"v_lightsOff_accelerating"}
+{"currentElementName":"e_reachEnd"}
+{"currentElementName":"v_TransferingLoad"}
+{"currentElementName":"e_loaded"}
+{"currentElementName":"v_lightsOn_accelerating"}
+{"currentElementName":"e_nearEnd"}
+{"currentElementName":"v_lightsOn_braking"}
+{"currentElementName":"e_daylightDetected"}
+{"currentElementName":"v_lightsOff_braking"}
+{"currentElementName":"e_tooSlow"}
+{"currentElementName":"v_lightsOff_coasting"}
+{"currentElementName":"e_tooSlow"}
+{"currentElementName":"v_lightsOff_accelerating"}
+{"currentElementName":"e_reachEnd"}
+{"currentElementName":"v_TransferingLoad"}
+{"currentElementName":"e_loaded"}
+{"currentElementName":"v_lightsOn_accelerating"}
+{"currentElementName":"e_daylightDetected"}
+{"currentElementName":"v_lightsOff_accelerating"}
+{"currentElementName":"e_darknessDetected"}
+{"currentElementName":"v_lightsOn_accelerating"}
+{"currentElementName":"e_reachedMaxSpeed"}
+{"currentElementName":"v_lightsOn_coasting"}
+----
++
 [TIP]
 Use the link:https://stedolan.github.io/jq/[jq tool] to prettify the output of the test generator. Pipe the results: +
 +
@@ -85,8 +120,7 @@ Use the link:https://stedolan.github.io/jq/[jq tool] to prettify the output of t
 GRAPHWALKER_COMMAND | jq -r .currentElementName
 ----
 
-. Experiment with other setting, such as full vertex coverage!
 
-
+. Experiment with other setting, such as full edge coverage with A* traversal! See more link:http://graphwalker.github.io/generators_and_stop_conditions/[here].
 
 . link:http://graphwalker.github.io/MBT_How_to/[Other useful MBT resources]
