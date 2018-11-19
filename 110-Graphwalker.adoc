@@ -74,7 +74,7 @@ You can download the resulting graphml link:figs/shuttler.graphml[from here]
 +
 [source,bash]
 ----
-java -jar graphwalker-cli-3.4.2.jar offline --model shuttler.graphml "random(vertex_coverage(100))" --start-element v_Initializing
+java -jar $GRAPHWALKER offline --model shuttler.graphml "random(vertex_coverage(100))" --start-element v_Initializing
 ----
 +
 [TIP]
