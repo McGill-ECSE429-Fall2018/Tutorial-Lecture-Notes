@@ -121,6 +121,6 @@ GRAPHWALKER_COMMAND | jq -r .currentElementName
 ----
 
 
-. Experiment with other setting, such as full edge coverage with A* traversal! See more link:http://graphwalker.github.io/generators_and_stop_conditions/[here].
+. Experiment with other setting, such as creating a test case from one node to another node with A* traversal! See more link:http://graphwalker.github.io/generators_and_stop_conditions/[here].
 
 . link:http://graphwalker.github.io/MBT_How_to/[Other useful MBT resources]
