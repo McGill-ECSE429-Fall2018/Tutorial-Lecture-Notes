@@ -10,8 +10,10 @@ ifndef::highlightjs-theme[:highlightjs-theme: foundation]
 :chapterdir: .
 :numbered:
 
-= ECSE 429 Software Validation: Hands-on Tutorials
+= ECSE 429 Software Validation (Fall 2018): Hands-on Tutorials
 McGill University
+
+Developed by Daniel Varro, Mathieu Boucher, and Marton Bur.
 
 * link:https://mcgill-ecse429-fall2018.github.io/Tutorial-Lecture-Notes/[HTML version]
 * link:https://mcgill-ecse429-fall2018.github.io/Tutorial-Lecture-Notes/ECSE-429-Tutorials.pdf[PDF version]
